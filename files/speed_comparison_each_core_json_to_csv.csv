@@ -1,0 +1,7 @@
+tag,cores,time
+multiprocessing | large file,1,5087.82137298584
+multiprocessing | large file,2,2756.7721931934357
+multiprocessing | large file,3,1965.9989290237427
+multiprocessing | large file,4,1747.4639253616333
+multiprocessing | large file,5,1568.184296131134
+multiprocessing | large file,6,2091.8340775966644
