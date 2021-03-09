@@ -34,6 +34,7 @@ def json_to_csv(file_name):
     # Unpack json rows
     file = [json.loads(x) for x in file]
 
+    # Create data frame
     file = pd.DataFrame(file)
 
     # Remove unnecessary columns
@@ -42,11 +43,6 @@ def json_to_csv(file_name):
     # Rename columns
     file = file.rename(columns={'overall': 'sentiment', 'reviewText': 'text'})
 
-    # Transform 0-5 score, into positive/negative values
-
-    file = file[file.sentiment != 3]
-    file.sentiment = file.sentiment.apply(lambda x: 'positive' if x > 3 else 'negative')
-
     # Remove noises
     # Make all to string
     file['text'] = file['text'].apply(str)
@@ -54,16 +50,23 @@ def json_to_csv(file_name):
     # We can remove some duplicates also at this point
     file = file.drop_duplicates()
 
+    # Declare the pattern s
     patterns = [
         r"https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)",
         r"[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)",
         r"(@[A-Za-z0-9_]+)",
         r"(#[A-Za-z0-9_]+)"]
 
+    # Remove patterns from the sentences
     for pattern in patterns:
         file['text'] = file['text'].apply(lambda x: re.sub(pattern, '', str(x)))
 
     file.text = file.text.apply(lambda x: x if 0 < len(str(x).split()) < 100 else None)
+
+    # Transform 0-5 score, into positive/negative values
+
+    file = file[file.sentiment != 3]
+    file.sentiment = file.sentiment.apply(lambda x: 'positive' if x > 3 else 'negative')
 
     # Remove nones
     file = file.dropna()

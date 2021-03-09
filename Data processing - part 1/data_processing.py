@@ -1,5 +1,5 @@
-from functions.re_sizer import ReSizerFiles
-from functions import *
+from .re_sizer import ReSizerFiles
+from .functions import *
 import multiprocessing
 import time
 

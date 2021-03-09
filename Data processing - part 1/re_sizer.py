@@ -8,10 +8,14 @@ class ReSizerFiles(object):
         super(ReSizerFiles, self).__init__()
 
     @staticmethod
-    def re_sizer(input_file_name: str, output_file_name: str,
-                 max_length_of_single_output: int, max_amount_output_of_files=float('inf'),
+    def re_sizer(input_file_name: str,
+                 output_file_name: str,
+                 max_length_of_single_output: int,
+                 max_amount_output_of_files=float('inf'),
                  total_length_of_output: int = float('inf'),
-                 auto_file_remover: bool = False, auto_detect_files_in_dir: bool = False, files_in_folder: int = None):
+                 auto_file_remover: bool = False,
+                 auto_detect_files_in_dir: bool = False,
+                 files_in_folder: int = None):
 
         if not auto_detect_files_in_dir and not files_in_folder:
             raise Exception("Declare files_in_folder or auto_detect_files_in_dir")
