@@ -141,3 +141,4 @@ def count_rows_in_files(input_file, files: int):
     for elem in out:
         out_sum += elem
     return out_sum
+

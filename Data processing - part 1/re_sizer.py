@@ -122,3 +122,4 @@ class ReSizerFiles(object):
         if auto_file_remover:
             for file_to_remove in files_name_lest_to_remove:
                 os.remove(file_to_remove)
+
