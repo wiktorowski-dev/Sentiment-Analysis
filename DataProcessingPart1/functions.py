@@ -100,7 +100,7 @@ def duplicate_remover(input_file_name,
         neg1 = set(filter(lambda x: type(x) == str, neg1))
 
         for i2 in list_files_2:
-            print('\t{}'.format(i2))
+            print('\tSearching in: {}'.format(i2))
             df2 = pd.read_csv(input_file_name.format(i2))
             df2 = df2.drop_duplicates()
             pos2 = set(df2[df2.sentiment == 'positive']['text'])

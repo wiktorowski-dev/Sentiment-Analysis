@@ -1,5 +1,5 @@
-from .re_sizer import ReSizerFiles
-from .functions import *
+from DataProcessingPart1.re_sizer import ReSizerFiles
+from DataProcessingPart1.functions import *
 import multiprocessing
 import time
 
@@ -16,7 +16,7 @@ if __name__ == '__main__':
     output_file_path_post_slicer = r'D:\s_a\file_{}'
 
     # .json to .csv formatter
-    cores = 4
+    cores = 5
     input_file_path = r'D:\s_a\file_{}'
 
     # Duplication remover variables
@@ -33,7 +33,6 @@ if __name__ == '__main__':
     files_name = [input_file_path.format(x) for x in range(count_files_in_dir(input_file_path))]
     with multiprocessing.Pool(cores) as p:
         p.map(json_to_csv, files_name)
-
     re_sizer(input_file_name=input_file_path,
              output_file_name=input_file_name,
              max_length_of_single_output=8000000,
